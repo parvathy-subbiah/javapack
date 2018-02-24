@@ -42,7 +42,20 @@
 #
 # Copyright 2018 Your name here, unless otherwise noted.
 #
-class javapack {
+class javapack
+(
+$usr = $javapack::params::usr,
+$grp = $javapack::params::grp,
+$package1 = $javapack::params::package1,
+$location = $javapack::params::location,
+)inherits javapack::params
+ {
+include javapack::usercreation
+include javapack::packageinstalltion
+include javapack::filemodify
 
-
-}
+Class[ 'javapack::usercreation' ] ->
+	Class[ 'javapack::packageinstalltion' ] ->
+		Class[ 'javapack::filemodify' ]
+		}
+include javapack
